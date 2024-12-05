@@ -1,5 +1,5 @@
 [tool.black]
-line-length = 89
+line-length = 79
 exclude = '''
 (
     venv\
@@ -8,11 +8,11 @@ exclude = '''
 '''
 
 [tool.flake8]
-max-line-length = 89
+max-line-length = 79
 extend-exclude = '.git, __pycache__, venv, __init__.py'
 
 [tool.isort]
-line_length = 89
+line_length = 79
 lines_after_imports = 2
 skip = '__pycache__'
 
