@@ -5,24 +5,44 @@
 from collections import deque
 
 
+"""
+дана бинарная матрица, где 0 представляет воду, а 1 представляет землю.
+Связанные единицы формируют остров. Необходимо подсчитать общее
+количество островов в данной матрице. Острова могут соединяться как по
+вертикали и горизонтали, так и по диагонали.
+"""
+
+
 class IslandProblem:
     def __init__(self, grid):
         self.grid = grid
         self.rows = len(grid)
         self.cols = len(grid[0]) if self.rows > 0 else 0
-        self.visited = [[False for _ in range(
-            self.cols)] for _ in range(self.rows)]
-        self.directions = [(-1, -1), (-1, 0), (-1, 1),
-                           (0, -1), (0, 1), (1, -1),
-                           (1, 0), (1, 1)]
+        self.visited = [
+            [False for _ in range(self.cols)] for _ in range(self.rows)
+        ]
+        self.directions = [
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
+        ]
 
     def actions(self, state):
-        """Возвращает допустимые действия для текущего состояния (соседние клетки)."""
+        """Возвращает допустимые действия для текущего состояния"""
         x, y = state
         neighbors = []
         for dx, dy in self.directions:
             nx, ny = x + dx, y + dy
-            if 0 <= nx < self.rows and 0 <= ny < self.cols and not self.visited[nx][ny]:
+            if (
+                0 <= nx < self.rows
+                and 0 <= ny < self.cols
+                and not self.visited[nx][ny]
+            ):
                 neighbors.append((nx, ny))
         return neighbors
 
@@ -61,7 +81,7 @@ def main():
         [0, 1, 0, 0, 1],
         [1, 0, 0, 1, 1],
         [0, 0, 0, 0, 0],
-        [1, 0, 1, 0, 1]
+        [1, 0, 1, 0, 1],
     ]
 
     problem = IslandProblem(grid)
