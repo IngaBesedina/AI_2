@@ -5,14 +5,27 @@
 from collections import deque
 
 
+"""
+Предоставлен код для поиска кратчайшего пути через лабиринт, используя
+алгоритм поиска в ширину (BFS). Лабиринт представлен в виде бинарной
+матрицы, где 1 обозначает проход, а 0 — стену. Необходимо модифицировать и
+дополнить код, чтобы реализовать полный функционал поиска пути.
+"""
+
+
 def is_valid(cell, rows, cols, grid, visited):
-    """Проверяет, можно ли перейти в указанную клетку."""
+    """Проверяет, можно ли перейти в указанную клетку"""
     x, y = cell
-    return 0 <= x < rows and 0 <= y < cols and grid[x][y] == 1 and not visited[x][y]
+    return (
+        0 <= x < rows
+        and 0 <= y < cols
+        and grid[x][y] == 1
+        and not visited[x][y]
+    )
 
 
 def bfs_shortest_path(grid, start, destination):
-    """Находит кратчайший путь в лабиринте с помощью BFS."""
+    """Находит кратчайший путь в лабиринте с помощью BFS"""
     rows, cols = len(grid), len(grid[0])
     visited = [[False for _ in range(cols)] for _ in range(rows)]
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Верх, низ, влево, вправо
@@ -38,7 +51,7 @@ def bfs_shortest_path(grid, start, destination):
 
 
 def reconstruct_path(parent_map, start, destination):
-    """Восстанавливает путь от начала до конца."""
+    """Восстанавливает путь от начала до конца"""
     path = []
     current = destination
     while current != start:
@@ -60,7 +73,7 @@ def main():
         [0, 0, 0, 0, 1, 0, 0, 1, 0, 1],
         [0, 1, 1, 1, 1, 1, 1, 1, 0, 0],
         [1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-        [0, 0, 1, 0, 0, 1, 1, 0, 0, 1]
+        [0, 0, 1, 0, 0, 1, 1, 0, 0, 1],
     ]
 
     start = (0, 0)
