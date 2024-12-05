@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
 import math
 import json
 from problem import Problem, Node, breadth_first_search, path_states
@@ -36,7 +40,8 @@ def expand(problem, node):
 
     for action in problem.actions(node.state):
         child_state = problem.result(node.state, action)
-        cost = node.path_cost + problem.action_cost(node.state, action, child_state)
+        cost = node.path_cost + \
+            problem.action_cost(node.state, action, child_state)
         yield Node(child_state, node, action, cost)
 
 
@@ -65,7 +70,7 @@ def breadth_first_search(problem: Problem):
 def load_graph(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         return json.load(file)
-    
+
 
 def main():
     graph = load_graph('graph.json')
